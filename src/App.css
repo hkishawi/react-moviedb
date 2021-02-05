@@ -1,0 +1,90 @@
+.titleBar {
+  background-color: #ffffff;
+  color: rgb(63, 56, 56);
+  font-size: 18;
+  height: 10%;
+  width: 100% !important;
+  padding: 10px;
+  margin: 0px !important;
+}
+
+.logoImage {
+  width: auto;
+  margin: 10% 20% !important;
+  padding: 10px !important;
+  height: 65px !important;
+}
+
+#title {
+  /* font-family: "Calibri" !important; */
+  text-decoration: bold;
+  display: inline !important;
+  font-size: 40px !important;
+  padding: 20px 15px !important;
+  margin: auto !important;
+  color: rgb(71, 71, 71) !important;
+  
+}
+
+.searchBar {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 70px !important;
+  align-items: center !important;
+  margin-top: 10px !important;
+  width: 80% !important;
+  height: 10%;
+  padding: 40px !important;
+}
+
+.searchBar:focus {
+  outline: none;
+}
+
+.movieContainer {
+  margin-top: 15px !important;
+  margin-left: 5% !important;
+  width: 90%
+}
+
+.movieInfo {
+  margin: 20px !important;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
