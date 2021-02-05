@@ -65,7 +65,7 @@ class App extends Component {
           <tbody>
             <tr>
               <td>
-                <img alt="app icon" className="logoImage" src="RMC_logo_1.jpg" />
+                {/* <img alt="app icon" className="logoImage" src="RMC_logo_1.jpg" /> */}
               </td>
               <td className="titleContainer">
                 <h3 id="title"><b>Relias Media Center®</b></h3>
