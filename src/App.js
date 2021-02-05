@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import MovieRow from './MovieRow.js'
-import $ from 'jquery'
-import { render } from '@testing-library/react';
+import MovieRow from './MovieRow.js';
+import $ from 'jquery';
 
 class App extends Component {
   constructor(props) {
