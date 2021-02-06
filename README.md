@@ -11,4 +11,4 @@
 *  🎬 Learn more: redirects to moviedb page with more info
 *  🎬 Fun error message 
 
-Check out the site live! <b>https://reliasmoviedb.netlify.app/</b>
+## 🌐 Check out the site live! <b>https://reliasmoviedb.netlify.app/</b>
