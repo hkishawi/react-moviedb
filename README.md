@@ -1,6 +1,6 @@
 
 ## 👨‍💻 Built with React, styled with CSS and Materialize, deployed via Netlify 🎞️ 
-### 🎥 Simple and userfriendly platform where users can find and learn more about movies 📽️
+### 🎥 Simple and user-friendly platform where users can find and learn more about movies 📽️
 ### <i><b>Criteria: </b></i>
 *  🎬 Write a web page that allows a user to search for movies by name
 *  🎬 If results are found they need to be displayed in a nice and readable format
