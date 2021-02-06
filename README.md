@@ -10,3 +10,5 @@
 *  🎬 Instant search results
 *  🎬 Learn more: redirects to moviedb page with more info
 *  🎬 Fun error message 
+
+Check out the site live! https://reliasmoviedb.netlify.app/
