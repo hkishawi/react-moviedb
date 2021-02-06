@@ -50,6 +50,10 @@
   margin: 20px !important;
 }
 
+.errorMessage {
+  color: rgb(219, 122, 138);
+}
+
 .App {
   text-align: center;
 }

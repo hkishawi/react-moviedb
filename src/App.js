@@ -78,7 +78,7 @@ class App extends Component {
               {this.state.rows}
 
              {this.state.hasResults ? null : (
-             <h4>Great Scott!! No results found. Try again :)</h4>
+             <h4 className="errorMessage">Great Scott!! No results found. Try again :)</h4>
              )}
              {/* if there are results, do nothing else show error message*/}
         </div>
