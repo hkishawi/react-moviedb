@@ -68,7 +68,7 @@ class App extends Component {
                 <img alt="app icon" className="logoImage" src="RMC_logo_1.jpg" />
               </td>
               <td className="titleContainer">
-                <h3 id="title"><b>Relias Media Center®</b></h3>
+                <h3 id="title"><b>React Media Center®</b></h3>
               </td>
             </tr>
           </tbody>
