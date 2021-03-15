@@ -5,14 +5,14 @@ import './App.css'
 
 class MovieRow extends React.Component {
     viewMovie() {
-        // console.log("trying to view movie")
-        // console.log(this.props.movie.title)
-        const url = "https://www.themoviedb.org/movie/" + this.props.movie.id
+     
+        const movieId = this.props.movie.id
+
+        const url = `https://www.themoviedb.org/movie/${movieId}`
         window.location.href = url
     }
 
  
-
     render() {
         return (
         <table className='movieContainer' key={this.props.movie.id}>
@@ -24,8 +24,8 @@ class MovieRow extends React.Component {
 
                 <div className='movieInfo'>
                     <td>
-                        <h4>{this.props.movie.title}</h4>
-                        <p className="flow=text"><b>Summary: </b>{this.props.movie.overview}</p>
+                        <h4 className='movie-title'>{this.props.movie.title}</h4>
+                        <p className="info-text"><b>Summary: </b>{this.props.movie.overview}</p>
                         <input className='waves-effect waves-light btn-small' type="button" value="Learn more" onClick={this.viewMovie.bind(this)} />
                     </td>
                 </div>
