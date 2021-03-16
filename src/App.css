@@ -84,6 +84,7 @@
 }
 
 .App-logo {
+  margin-left: 15px;
   height: 40vmin;
   pointer-events: none;
 }

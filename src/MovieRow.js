@@ -22,13 +22,12 @@ class MovieRow extends React.Component {
                     <img className='logoImg' alt="poster" src={this.props.movie.poster_src}/>
                 </td>
 
-                <div className='movieInfo'>
-                    <td>
-                        <h4 className='movie-title'>{this.props.movie.title}</h4>
-                        <p className="info-text"><b>Summary: </b>{this.props.movie.overview}</p>
-                        <input className='waves-effect waves-light btn-small' type="button" value="Learn more" onClick={this.viewMovie.bind(this)} />
-                    </td>
-                </div>
+              
+                <td className='movieInfo'>
+                    <h4 className='movie-title'>{this.props.movie.title}</h4>
+                    <p className="info-text"><b>Summary: </b>{this.props.movie.overview}</p>
+                    <input className='waves-effect waves-light btn-small' type="button" value="Learn more" onClick={this.viewMovie.bind(this)} />
+                </td>
             </tr>
             </tbody>
       </table>
