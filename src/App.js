@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
-import MovieRow from './MovieRow.js';
+import MovieRow from './components/MovieRow.js';
+import TitleBar from './components/TitleBar.js';
+import SearchBar from './components/SearchBar.js';
 import $ from 'jquery';
-// import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      searchTerm:'',
+      pageCount: 0,
       hasResults: true,
       offset: 0,
       data: [],
@@ -17,39 +20,37 @@ class App extends Component {
     };
     this.performSearch("");
     this.handlePageClick = this.handlePageClick.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
-  
-
-  performSearch(searchTerm) {
-    // if search term is blank, don't perform get request; else perform get request
-    
+  performSearch() {
+    const searchTerm = this.state.searchTerm
     if (searchTerm === "") {
       this.setState({
         hasResults: false,
         offset: 0,
         currentPage: 0,
-        perPage: 0,
+        perPage: 5,
       }) 
     } else {
 
     const API_KEY = "a45060455da3e16ead4c6661b8eeef03";
-
-    const urlString = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&&page=1&query=` + searchTerm;
     
+    const urlString = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=` + searchTerm + `&page=${this.state.currentPage + 1}`;
+   
     $.ajax({
       url: urlString,
       success: (searchResults) => {
-        
+        console.log(searchResults)
         var results = searchResults.results
-    
+         
         results = results.filter(Boolean)
 
         const slice = results.slice(this.state.offset, this.state.offset + this.state.perPage)
-
+        
         var movieRows = []
   
-        slice.forEach((movie) => {
+        const postData = slice.forEach((movie) => {
           const posterPath = movie.poster_path
 
           if (posterPath == null) {
@@ -70,7 +71,7 @@ class App extends Component {
           rows: movieRows,
           pageCount: Math.ceil(results.length / this.state.perPage),
 
-          movieRows
+          postData
           })
       }, 
       error: (xhr, status, err) => {
@@ -78,15 +79,21 @@ class App extends Component {
     
       }
     })
-    console.log(this.state)
+   
   }
   }
 
   handleSearchChange(event) {
     const boundObject = this
-    const searchTerm = event.target.value
-    
-    boundObject.performSearch(searchTerm)
+    const searchTermValue = event.target.value
+    this.setState({
+      searchTerm: searchTermValue,
+      offset: 0,
+      currentPage: 0,
+    })
+    console.log(this.state)
+    boundObject.performSearch()
+    console.log(this.state)
   }
 
   handlePageClick = (e) => {
@@ -96,35 +103,22 @@ class App extends Component {
     this.setState({
       currentPage: selectedPage,
       offset: offset
-    }, () => {
+      })
       this.performSearch()
-    })
 }
 
   render() {
     return (
       <div className='App'>
-        <table className="titleBar">
-          <tbody>
-            <tr>
-              <td>
-                <h3 className='logo'>🍿</h3>
-              </td>
-              <td className="titleContainer">
-                <h3 id="site-name"><b>React Media Center®</b></h3>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div>
-              <input className="searchBar input-field col s12" placeholder="so it begins..." onChange={this.handleSearchChange.bind(this)} />
-              {this.state.rows}
-            
-             {this.state.hasResults ? null : (
-             <h4 className="errorMessage">Great Scott!! No results found. Try again :)</h4>
-             )}
-             {/* if there are results, do nothing else show error message*/}
-        </div>
+        <TitleBar className='title-bar'/>
+        <SearchBar 
+          handleSearchChange={this.handleSearchChange}
+          className='search-bar'/>
+        {this.state.rows}
+            {this.state.hasResults ? null : (
+            <h4 className="errorMessage">Great Scott!! No results found. Try again :)</h4>
+            )}
+            {/* if there are results, do nothing else show error message*/}
         <div>
                 {this.state.hasResults}
                 <ReactPaginate
@@ -139,6 +133,7 @@ class App extends Component {
                     containerClassName={"pagination"}
                     subContainerClassName={"pages pagination"}
                     activeClassName={"active"}/>
+                  
         </div>
       </div>
     );

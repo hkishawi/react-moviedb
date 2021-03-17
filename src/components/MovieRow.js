@@ -1,7 +1,4 @@
 import React from 'react'
-import './App.css'
-
-
 
 class MovieRow extends React.Component {
     viewMovie() {
