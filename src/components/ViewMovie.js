@@ -1,6 +1,7 @@
 import React from 'react'
+import { Redirect, Route, Switch } from "react-router";
 
-class MovieRow extends React.Component {
+class viewMovie extends React.Component {
     viewMovie() {
      
         const movieId = this.props.movie.id
@@ -19,12 +20,14 @@ class MovieRow extends React.Component {
                     <img className='logoImg' alt="poster" src={this.props.movie.poster_src}/>
                 </td>
 
-              
                 <td className='movieInfo'>
                     <h4 className='movie-title'>{this.props.movie.title}</h4>
                     <p className="info-text"><b>Summary: </b>{this.props.movie.overview}</p>
-                    <input className='button viewMovieButton waves-effect waves-light btn-small' onClick={this.props.handleViewMovie} type='button' value='Learn more!'/>
-                    <input className='button waves-effect waves-light btn-small' type="button" value="Visit MovieDB" onClick={this.viewMovie.bind(this)} />
+                <Switch>    
+                    <Route exact path={this.viewMovie.bind(this)}>
+                    <input className='waves-effect waves-light btn-small' type="button" value="Learn more" onClick={this.viewMovie.bind(this)} />
+                    </Route>
+                </Switch>
                 </td>
             </tr>
             </tbody>
@@ -32,4 +35,4 @@ class MovieRow extends React.Component {
     )}
 }
 
-export default MovieRow
+export default viewMovie

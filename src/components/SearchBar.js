@@ -8,9 +8,9 @@ class SearchBar extends React.Component {
             className="searchBar input-field col s12" 
             placeholder="so it begins..." 
             onChange={this.props.handleSearchChange} 
+           
             />
             
-           
         )
     }
 }

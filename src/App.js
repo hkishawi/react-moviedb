@@ -3,8 +3,12 @@ import './App.css';
 import MovieRow from './components/MovieRow.js';
 import TitleBar from './components/TitleBar.js';
 import SearchBar from './components/SearchBar.js';
+import ViewMovie from './components/ViewMovie';
 import $ from 'jquery';
 import ReactPaginate from 'react-paginate';
+import {Redirect} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
@@ -18,16 +22,16 @@ class App extends Component {
       perPage: 5,
       currentPage: 0,
     };
-    this.performSearch("");
+    this.performSearch('');
     this.handlePageClick = this.handlePageClick.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
   performSearch() {
     const searchTerm = this.state.searchTerm
-    if (searchTerm === "") {
+    if (searchTerm === '') {
       this.setState({
-        hasResults: false,
+        hasResults: true,
         offset: 0,
         currentPage: 0,
         perPage: 5,
@@ -36,7 +40,7 @@ class App extends Component {
 
     const API_KEY = "a45060455da3e16ead4c6661b8eeef03";
     
-    const urlString = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=` + searchTerm + `&page=${this.state.currentPage + 1}`;
+    const urlString = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchTerm}&page=${this.state.currentPage + 1}`
    
     $.ajax({
       url: urlString,
@@ -79,13 +83,12 @@ class App extends Component {
     
       }
     })
-   
-  }
+    }
   }
 
-  handleSearchChange(event) {
+  handleSearchChange (e) {
     const boundObject = this
-    const searchTermValue = event.target.value
+    const searchTermValue = e.target.value
     this.setState({
       searchTerm: searchTermValue,
       offset: 0,
@@ -107,34 +110,47 @@ class App extends Component {
       this.performSearch()
 }
 
+  displayMovieResults = () => {
+  return (
+    <div>
+      {this.state.rows}
+      {this.state.hasResults ? null : (
+      <h4 className="errorMessage">Great Scott!! No results found. Try again :)</h4>
+      )}
+      {this.state.hasResults}
+    </div>
+    )
+}
+
+handlePagination = () => {
+  return (
+    <div>        
+      <ReactPaginate
+          previousLabel={"prev"}
+          nextLabel={"next"}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={this.state.pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={this.handlePageClick}
+          containerClassName={"pagination"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"active"}/>          
+    </div>
+  )
+}
+
   render() {
     return (
       <div className='App'>
         <TitleBar className='title-bar'/>
         <SearchBar 
           handleSearchChange={this.handleSearchChange}
-          className='search-bar'/>
-        {this.state.rows}
-            {this.state.hasResults ? null : (
-            <h4 className="errorMessage">Great Scott!! No results found. Try again :)</h4>
-            )}
-            {/* if there are results, do nothing else show error message*/}
-        <div>
-                {this.state.hasResults}
-                <ReactPaginate
-                    previousLabel={"prev"}
-                    nextLabel={"next"}
-                    breakLabel={"..."}
-                    breakClassName={"break-me"}
-                    pageCount={this.state.pageCount}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    onPageChange={this.handlePageClick}
-                    containerClassName={"pagination"}
-                    subContainerClassName={"pages pagination"}
-                    activeClassName={"active"}/>
-                  
-        </div>
+          className='search-bar'
+        />
+        { this.displayMovieResults() }
+        { this.handlePagination() }
       </div>
     );
     

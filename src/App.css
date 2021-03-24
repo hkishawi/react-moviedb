@@ -62,6 +62,7 @@
   flex-wrap: wrap !important;
   margin: 20px !important;
   height: 200px !important;
+  border-bottom: rgb(148, 148, 148) !important;
 }
 
 .movie-title {
@@ -73,6 +74,12 @@
   text-overflow: ellipsis !important;
   overflow: auto !important;
   height: 90px;
+
+}
+
+.button {
+  display: inline-flex !important;
+  margin: 5px !important;
 }
 
 .errorMessage {
@@ -118,3 +125,5 @@
     transform: rotate(360deg);
   }
 }
+
+
